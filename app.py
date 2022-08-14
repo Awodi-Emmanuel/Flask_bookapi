@@ -10,7 +10,7 @@ app.config.from_object(os.environ['APP_SETTINGS'])
 app.config['SQLACHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
-from models import Book
+from models.models import Book
 
 @app.route("/")
 def hello():
