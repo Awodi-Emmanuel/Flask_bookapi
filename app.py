@@ -7,8 +7,10 @@ from flask_sqlalchemy import SQLAlchemy
 app = Flask(__name__)
 
 app.config.from_object(os.environ['APP_SETTINGS'])
-app.config['SQLACHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
+db.init_app(app)
+
 
 from models.models import Book
 
@@ -27,6 +29,6 @@ def get_book_details():
     published = request.args.get('published')
     return "Author : {}, Published: {}".format(author, published)
 
-
+db.create_all()
 if __name__ == '__main__':
     app.run()
